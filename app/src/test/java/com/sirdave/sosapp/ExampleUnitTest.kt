@@ -1,4 +1,4 @@
-package com.sirdave.quicgas
+package com.sirdave.sosapp
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.sirdave.quicgas
+package com.sirdave.sosapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

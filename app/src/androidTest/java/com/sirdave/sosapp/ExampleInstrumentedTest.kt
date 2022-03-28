@@ -1,4 +1,4 @@
-package com.sirdave.quicgas
+package com.sirdave.sosapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
