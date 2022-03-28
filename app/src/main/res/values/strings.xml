@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">QuicGas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_help_now">Get Help Now</string>
+    <string name="add_new_contact">Add New Contact</string>
+    <string name="display_saved_contacts">Display Saved Contacts</string>
+    <string name="save">Save</string>
+    <string name="contact_phone_no">Contact Phone No</string>
+    <string name="create_new_contact">Create New Contact</string>
+    <string name="contact_name">Contact Name</string>
 </resources>
