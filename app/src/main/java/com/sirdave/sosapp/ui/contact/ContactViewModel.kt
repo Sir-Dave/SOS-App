@@ -16,7 +16,7 @@ class ContactViewModel @Inject constructor(
     private val repository: ContactRepository) : ViewModel() {
 
     private val _contact : MutableLiveData<Contact> = MutableLiveData()
-    private val contact : LiveData<Contact> get() = _contact
+    val contact : LiveData<Contact> get() = _contact
 
     fun getContactById(id: Int){
         viewModelScope.launch {

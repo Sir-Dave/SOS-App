@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.sirdave.sosapp.Constants
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,13 @@ class ContactFragment : Fragment() {
     private lateinit var btnSave : Button
     private val viewModel: ContactViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.getInt(Constants.CONTACT_ID)?.let { contactId ->
+            viewModel.getContactById(contactId)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -30,6 +38,11 @@ class ContactFragment : Fragment() {
         contactName = view.findViewById(R.id.contactName)
         contactPhone = view.findViewById(R.id.contactPhone)
         btnSave = view.findViewById(R.id.btnSave)
+
+        viewModel.contact.observe(viewLifecycleOwner, { contact ->
+            contactName.setText(contact.name)
+            contactPhone.setText(contact.phoneNumber)
+        })
 
         btnSave.setOnClickListener {
             saveToDB(requireContext(), it)

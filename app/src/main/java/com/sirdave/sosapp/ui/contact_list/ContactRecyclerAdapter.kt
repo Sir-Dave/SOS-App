@@ -1,12 +1,15 @@
 package com.sirdave.sosapp.ui.contact_list
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.sirdave.sosapp.Constants
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
 
@@ -27,7 +30,10 @@ class ContactRecyclerAdapter(
         holder.phone.text = contact.phoneNumber
         holder.imageIcon.text = contact.name?.substring(0, 1)
         holder.parent.setOnClickListener {
-
+            val bundle = Bundle()
+            bundle.putInt(Constants.CONTACT_ID, contact.id!!)
+            val navController = Navigation.findNavController(it)
+            navController.navigate(R.id.viewContact, bundle)
         }
     }
 
