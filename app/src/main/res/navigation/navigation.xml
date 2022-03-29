@@ -12,6 +12,10 @@
         tools:layout="@layout/fragment_home">
 
         <action
+            android:id="@+id/openCamera"
+            app:destination="@id/navigation_camera" />
+
+        <action
             android:id="@+id/newContact"
             app:destination="@id/navigation_contact" />
 
@@ -38,4 +42,10 @@
         android:name="com.sirdave.sosapp.ui.contact.ContactFragment"
         android:label="Contact"
         tools:layout="@layout/contact_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.sirdave.sosapp.ui.CameraFragment"
+        android:label="Camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>

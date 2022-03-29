@@ -81,9 +81,6 @@ class ContactFragment : Fragment() {
         contact.name = name
         contact.phoneNumber = phoneNumber
         viewModel.updateContact(contact)
-        /**if (viewModel.isContactExists(name)){
-            val contact = viewModel.findContactByName(name))
-        }*/
         goToPreviousScreen(view)
     }
 
