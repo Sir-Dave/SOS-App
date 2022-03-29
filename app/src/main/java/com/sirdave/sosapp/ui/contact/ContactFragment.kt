@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,22 +32,22 @@ class ContactFragment : Fragment() {
         btnSave = view.findViewById(R.id.btnSave)
 
         btnSave.setOnClickListener {
-            saveToDB(requireContext())
+            saveToDB(requireContext(), it)
         }
 
         return view
     }
 
-    private fun saveToDB(context: Context){
+    private fun saveToDB(context: Context, view: View){
         if (isEmpty(contactName) || isEmpty(contactPhone)){
             Toast.makeText(context, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
         }
         else{
-            createOrUpdateContact()
+            createOrUpdateContact(view)
         }
     }
 
-    private fun createOrUpdateContact(){
+    private fun createOrUpdateContact(view: View){
         val name = contactName.text.toString()
         val phoneNumber = contactPhone.text.toString()
         if (viewModel.isContactExists(name)){
@@ -61,6 +62,9 @@ class ContactFragment : Fragment() {
         }
         Toast.makeText(context, "Successfully saved contact",
             Toast.LENGTH_SHORT).show()
+
+        val navController = Navigation.findNavController(view)
+        navController.popBackStack()
     }
 
     private fun isEmpty(editText: EditText): Boolean{
