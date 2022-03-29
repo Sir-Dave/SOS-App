@@ -21,6 +21,7 @@ class ContactFragment : Fragment() {
     private lateinit var contactName: EditText
     private lateinit var contactPhone: EditText
     private lateinit var btnSave : Button
+    private var existingContact: Contact? =  null
     private val viewModel: ContactViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,7 @@ class ContactFragment : Fragment() {
         btnSave = view.findViewById(R.id.btnSave)
 
         viewModel.contact.observe(viewLifecycleOwner, { contact ->
+            existingContact = contact
             contactName.setText(contact.name)
             contactPhone.setText(contact.phoneNumber)
         })
@@ -56,26 +58,38 @@ class ContactFragment : Fragment() {
             Toast.makeText(context, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
         }
         else{
-            createOrUpdateContact(view)
+            if (existingContact == null){
+                createNewContact(view)
+            }
+            else{
+                updateContact(existingContact!!, view)
+            }
         }
     }
 
-    private fun createOrUpdateContact(view: View){
+    private fun createNewContact(view: View){
         val name = contactName.text.toString()
         val phoneNumber = contactPhone.text.toString()
-        if (viewModel.isContactExists(name)){
-            val contact = viewModel.findContactByName(name)
-            contact?.name = name
-            contact?.phoneNumber = phoneNumber
-            viewModel.updateContact(contact!!)
-        }
-        else{
-            val newContact = Contact(name, phoneNumber)
-            viewModel.addNewContact(newContact)
-        }
-        Toast.makeText(context, "Successfully saved contact",
-            Toast.LENGTH_SHORT).show()
+        val newContact = Contact(name, phoneNumber)
+        viewModel.addNewContact(newContact)
+        goToPreviousScreen(view)
+    }
 
+    private fun updateContact(contact: Contact, view: View){
+        val name = contactName.text.toString()
+        val phoneNumber = contactPhone.text.toString()
+        contact.name = name
+        contact.phoneNumber = phoneNumber
+        viewModel.updateContact(contact)
+        /**if (viewModel.isContactExists(name)){
+            val contact = viewModel.findContactByName(name))
+        }*/
+        goToPreviousScreen(view)
+    }
+
+    private fun goToPreviousScreen(view: View){
+        Toast.makeText(requireContext(), "Successfully saved contact",
+            Toast.LENGTH_SHORT).show()
         val navController = Navigation.findNavController(view)
         navController.popBackStack()
     }
