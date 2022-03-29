@@ -9,7 +9,7 @@ interface ContactRepository {
 
     suspend fun getOneContact(id: Int): ContactEntity?
 
-    suspend fun addNewContact(contact: ContactEntity): ContactEntity?
+    suspend fun addNewContact(contact: ContactEntity)
 
     suspend fun deleteContact(contact: ContactEntity)
 }

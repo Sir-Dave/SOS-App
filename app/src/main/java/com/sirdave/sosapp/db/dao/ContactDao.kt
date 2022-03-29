@@ -14,7 +14,7 @@ interface ContactDao {
     suspend fun getOneContact(id: Int): ContactEntity?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addNewContact(contactEntity: ContactEntity): ContactEntity?
+    suspend fun addNewContact(contactEntity: ContactEntity)
 
     @Delete
     suspend fun deleteContact(contactEntity: ContactEntity)

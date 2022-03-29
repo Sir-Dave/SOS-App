@@ -13,8 +13,8 @@ class ContactRepositoryImpl(private val contactDao: ContactDao): ContactReposito
         return contactDao.getOneContact(id)
     }
 
-    override suspend fun addNewContact(contact: ContactEntity): ContactEntity? {
-        return contactDao.addNewContact(contact)
+    override suspend fun addNewContact(contact: ContactEntity){
+        contactDao.addNewContact(contact)
     }
 
     override suspend fun deleteContact(contact: ContactEntity) {
