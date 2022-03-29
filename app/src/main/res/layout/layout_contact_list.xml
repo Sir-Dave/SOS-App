@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:maxEms="1"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
