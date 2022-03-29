@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
-import com.sirdave.sosapp.model.Contact
+import com.sirdave.sosapp.db.entity.Contact
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContactListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-
-    private lateinit var viewModel: ContactListViewModel
+    private val viewModel: ContactListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +24,9 @@ class ContactListFragment : Fragment() {
         val view =  inflater.inflate(R.layout.contact_list_fragment, container, false)
         recyclerView = view.findViewById(R.id.contact_recycler_view)
 
+        viewModel.contacts.observe(viewLifecycleOwner, { contacts ->
+            setUpRecyclerView(contacts)
+        })
 
         return view
     }
@@ -31,7 +36,9 @@ class ContactListFragment : Fragment() {
         val adapter = ContactRecyclerAdapter(context, contactList)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = RecyclerView.VERTICAL
+        recyclerView.layoutManager = layoutManager
     }
 
 }
