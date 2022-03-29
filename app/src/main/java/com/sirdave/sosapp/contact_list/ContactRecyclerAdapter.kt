@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
-import com.sirdave.sosapp.contact.model.Contact
+import com.sirdave.sosapp.model.Contact
 
 class ContactRecyclerAdapter(
     val context: Context,

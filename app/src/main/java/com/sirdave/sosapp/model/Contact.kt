@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.contact.model
+package com.sirdave.sosapp.model
 
 data class Contact(
     val id: Int,

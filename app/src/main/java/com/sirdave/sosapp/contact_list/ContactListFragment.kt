@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
-import com.sirdave.sosapp.contact.model.Contact
+import com.sirdave.sosapp.model.Contact
 
 class ContactListFragment : Fragment() {
 
