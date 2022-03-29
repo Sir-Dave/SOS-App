@@ -1,15 +1,17 @@
 package com.sirdave.sosapp.repository
 
-import com.sirdave.sosapp.db.entity.ContactEntity
+import com.sirdave.sosapp.db.entity.Contact
 import kotlinx.coroutines.flow.Flow
 
 interface ContactRepository {
 
-    fun getAllContacts(): Flow<List<ContactEntity>>
+    fun getAllContacts(): Flow<List<Contact>>
 
-    suspend fun getOneContact(id: Int): ContactEntity?
+    suspend fun getOneContact(id: Int): Contact?
 
-    suspend fun addNewContact(contact: ContactEntity)
+    suspend fun addNewContact(contact: Contact)
 
-    suspend fun deleteContact(contact: ContactEntity)
+    suspend fun updateContact(contact: Contact)
+
+    suspend fun deleteContact(contact: Contact)
 }

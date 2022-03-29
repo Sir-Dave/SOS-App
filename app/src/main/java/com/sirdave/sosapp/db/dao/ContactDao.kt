@@ -1,21 +1,24 @@
 package com.sirdave.sosapp.db.dao
 
 import androidx.room.*
-import com.sirdave.sosapp.db.entity.ContactEntity
+import com.sirdave.sosapp.db.entity.Contact
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ContactDao {
 
     @Query("SELECT * FROM contacts")
-    fun getAllContacts(): Flow<List<ContactEntity>>
+    fun getAllContacts(): Flow<List<Contact>>
 
     @Query("SELECT * FROM contacts where id = :id")
-    suspend fun getOneContact(id: Int): ContactEntity?
+    suspend fun getOneContact(id: Int): Contact?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addNewContact(contactEntity: ContactEntity)
+    suspend fun addNewContact(contact: Contact)
+
+    @Update
+    suspend fun updateContact(contact: Contact)
 
     @Delete
-    suspend fun deleteContact(contactEntity: ContactEntity)
+    suspend fun deleteContact(contact: Contact)
 }
