@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.contact
+package com.sirdave.sosapp.ui.contact
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

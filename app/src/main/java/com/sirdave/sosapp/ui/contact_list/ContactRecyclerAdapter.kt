@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.contact_list
+package com.sirdave.sosapp.ui.contact_list
 
 import android.content.Context
 import android.view.LayoutInflater

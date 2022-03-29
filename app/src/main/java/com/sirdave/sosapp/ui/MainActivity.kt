@@ -1,9 +1,10 @@
-package com.sirdave.sosapp
+package com.sirdave.sosapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.sirdave.sosapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
