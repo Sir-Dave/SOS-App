@@ -5,7 +5,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.sirdave.sosapp.contact.ContactFragment
 import com.sirdave.sosapp.contact_list.ContactListFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

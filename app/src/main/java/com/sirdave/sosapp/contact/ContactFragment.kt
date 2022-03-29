@@ -9,22 +9,26 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.sirdave.sosapp.R
+import com.sirdave.sosapp.db.entity.Contact
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContactFragment : Fragment() {
-    private lateinit var addNewContact: EditText
-    private lateinit var displayContact: EditText
+    private lateinit var contactName: EditText
+    private lateinit var contactPhone: EditText
     private lateinit var btnSave : Button
+    private val viewModel: ContactViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.contact_fragment, container, false)
 
-        addNewContact = view.findViewById(R.id.contactName)
-        displayContact = view.findViewById(R.id.contactPhone)
+        contactName = view.findViewById(R.id.contactName)
+        contactPhone = view.findViewById(R.id.contactPhone)
         btnSave = view.findViewById(R.id.btnSave)
-
 
         btnSave.setOnClickListener {
             saveToDB(requireContext())
@@ -34,12 +38,29 @@ class ContactFragment : Fragment() {
     }
 
     private fun saveToDB(context: Context){
-        if (isEmpty(addNewContact) || isEmpty(displayContact)){
+        if (isEmpty(contactName) || isEmpty(contactPhone)){
             Toast.makeText(context, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
         }
         else{
-            //TODO: Save the contact to DB
+            createOrUpdateContact()
         }
+    }
+
+    private fun createOrUpdateContact(){
+        val name = contactName.text.toString()
+        val phoneNumber = contactPhone.text.toString()
+        if (viewModel.isContactExists(name)){
+            val contact = viewModel.findContactByName(name)
+            contact?.name = name
+            contact?.phoneNumber = phoneNumber
+            viewModel.updateContact(contact!!)
+        }
+        else{
+            val newContact = Contact(name, phoneNumber)
+            viewModel.addNewContact(newContact)
+        }
+        Toast.makeText(context, "Successfully saved contact",
+            Toast.LENGTH_SHORT).show()
     }
 
     private fun isEmpty(editText: EditText): Boolean{
