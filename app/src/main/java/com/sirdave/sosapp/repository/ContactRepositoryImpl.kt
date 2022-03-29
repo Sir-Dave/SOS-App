@@ -21,6 +21,10 @@ class ContactRepositoryImpl(private val contactDao: ContactDao): ContactReposito
         contactDao.updateContact(contact)
     }
 
+    override suspend fun findContactByName(name: String): Contact? {
+        return contactDao.findContactByName(name)
+    }
+
     override suspend fun deleteContact(contact: Contact) {
         return contactDao.deleteContact(contact)
     }

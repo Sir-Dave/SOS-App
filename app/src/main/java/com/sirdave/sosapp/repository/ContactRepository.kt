@@ -13,5 +13,7 @@ interface ContactRepository {
 
     suspend fun updateContact(contact: Contact)
 
+    suspend fun findContactByName(name: String): Contact?
+
     suspend fun deleteContact(contact: Contact)
 }

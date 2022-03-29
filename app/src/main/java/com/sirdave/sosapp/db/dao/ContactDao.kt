@@ -19,6 +19,9 @@ interface ContactDao {
     @Update
     suspend fun updateContact(contact: Contact)
 
+    @Query("SELECT * FROM contacts where name = :name")
+    suspend fun findContactByName(name: String): Contact?
+
     @Delete
     suspend fun deleteContact(contact: Contact)
 }
