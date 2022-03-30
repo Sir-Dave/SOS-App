@@ -12,7 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="60dp"
         android:keepScreenOn="true"
         android:id="@+id/cameraView"
         app:cameraAudio="off"
@@ -27,5 +29,26 @@
             app:layout_drawOnVideoSnapshot="true"/>
 
     </com.otaliastudios.cameraview.CameraView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/layout"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:id="@+id/captureImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_baseline_camera_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
