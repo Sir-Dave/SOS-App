@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.ui.contact_list
+package com.sirdave.sosapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
-import com.sirdave.sosapp.ui.contact.ContactViewModel
+import com.sirdave.sosapp.ui.ContactViewModel
+import com.sirdave.sosapp.ui.ContactRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

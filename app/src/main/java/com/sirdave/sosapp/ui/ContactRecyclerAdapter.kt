@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.ui.contact_list
+package com.sirdave.sosapp.ui
 
 import android.content.Context
 import android.os.Bundle

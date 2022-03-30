@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.ui
+package com.sirdave.sosapp.ui.fragments
 
 import android.os.Bundle
 import android.util.Base64

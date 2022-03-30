@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.sirdave.sosapp.ui.HomeFragment"
+        android:name="com.sirdave.sosapp.ui.fragments.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_contact_list"
-        android:name="com.sirdave.sosapp.ui.contact_list.ContactListFragment"
+        android:name="com.sirdave.sosapp.ui.fragments.ContactListFragment"
         android:label="Contact List"
         tools:layout="@layout/contact_list_fragment">
 
@@ -39,13 +39,13 @@
 
     <fragment
         android:id="@+id/navigation_contact"
-        android:name="com.sirdave.sosapp.ui.contact.ContactFragment"
+        android:name="com.sirdave.sosapp.ui.fragments.ContactFragment"
         android:label="Contact"
         tools:layout="@layout/contact_fragment" />
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.sirdave.sosapp.ui.CameraFragment"
+        android:name="com.sirdave.sosapp.ui.fragments.CameraFragment"
         android:label="Camera"
         tools:layout="@layout/fragment_camera" />
 </navigation>

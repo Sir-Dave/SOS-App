@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.ui.contact
+package com.sirdave.sosapp.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import com.sirdave.sosapp.Constants
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
+import com.sirdave.sosapp.ui.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

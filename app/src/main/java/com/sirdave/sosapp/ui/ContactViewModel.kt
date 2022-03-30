@@ -1,4 +1,4 @@
-package com.sirdave.sosapp.ui.contact
+package com.sirdave.sosapp.ui
 
 import androidx.lifecycle.*
 import com.sirdave.sosapp.db.entity.Contact
