@@ -6,16 +6,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.otaliastudios.cameraview.CameraListener
 import com.otaliastudios.cameraview.CameraView
 import com.otaliastudios.cameraview.PictureResult
 import com.sirdave.sosapp.R
+import com.sirdave.sosapp.network.Location
+import com.sirdave.sosapp.network.Request
+import com.sirdave.sosapp.ui.ContactViewModel
+import java.util.stream.Collectors
+import kotlin.streams.toList
 
 class CameraFragment : Fragment() {
     private lateinit var cameraView: CameraView
+    private val viewModel: ContactViewModel by activityViewModels()
+    private var encodedImage: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -29,11 +36,11 @@ class CameraFragment : Fragment() {
 
         cameraView.addCameraListener(object : CameraListener(){
             override fun onPictureTaken(result: PictureResult) {
-                // Access the raw data if needed.
                 val byteArrayImage = result.data
-                val encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
+                encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
                 Log.d("CameraFragment", "encodedImage is $encodedImage")
 
+                sendSOSRequest()
             }
         })
 
@@ -44,4 +51,20 @@ class CameraFragment : Fragment() {
         return view
     }
 
+    private fun sendSOSRequest(){
+        viewModel.contacts.observe(viewLifecycleOwner, { contacts ->
+            val phoneNumbers = contacts.map { s -> s.phoneNumber!! }.toList()
+            val location = getCurrentLocation()
+
+            encodedImage?.let {
+                val request = Request(phoneNumbers, it, location)
+                viewModel.sendSOSRequest(request)
+            }
+        })
+    }
+
+    //TODO: Use Google API to get current location
+    private fun getCurrentLocation(): Location{
+        return Location("", "")
+    }
 }

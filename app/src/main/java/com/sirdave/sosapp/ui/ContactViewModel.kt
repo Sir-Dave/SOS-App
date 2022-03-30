@@ -2,10 +2,12 @@ package com.sirdave.sosapp.ui
 
 import androidx.lifecycle.*
 import com.sirdave.sosapp.db.entity.Contact
+import com.sirdave.sosapp.network.Request
 import com.sirdave.sosapp.repository.ContactRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import retrofit2.http.Body
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,6 +50,10 @@ class ContactViewModel @Inject constructor(
 
     fun deleteContact(contact: Contact) = viewModelScope.launch {
         repository.deleteContact(contact)
+    }
+
+    fun sendSOSRequest(request: Request) = viewModelScope.launch {
+        repository.sendRequest(request)
     }
 
 }
