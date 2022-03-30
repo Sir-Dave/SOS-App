@@ -1,6 +1,7 @@
 package com.sirdave.sosapp.di
 
 import com.sirdave.sosapp.db.dao.ContactDao
+import com.sirdave.sosapp.network.ContactService
 import com.sirdave.sosapp.repository.ContactRepository
 import com.sirdave.sosapp.repository.ContactRepositoryImpl
 import dagger.Module
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun provideContactRepository(contactDao: ContactDao): ContactRepository{
-        return ContactRepositoryImpl(contactDao)
+    fun provideContactRepository(contactDao: ContactDao, service: ContactService):
+            ContactRepository{
+        return ContactRepositoryImpl(contactDao, service)
     }
 }
