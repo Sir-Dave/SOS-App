@@ -1,9 +1,6 @@
 package com.sirdave.sosapp.ui.contact
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sirdave.sosapp.db.entity.Contact
 import com.sirdave.sosapp.repository.ContactRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +12,13 @@ import javax.inject.Inject
 class ContactViewModel @Inject constructor(
     private val repository: ContactRepository) : ViewModel() {
 
-    private val _contact : MutableLiveData<Contact> = MutableLiveData()
-    val contact : LiveData<Contact> get() = _contact
+    private val _oneContact: MutableLiveData<Contact> = MutableLiveData()
+    val oneContact: LiveData<Contact> get() = _oneContact
+    var contacts: LiveData<List<Contact>> = MutableLiveData()
+
+    init {
+        getAllContacts()
+    }
 
     fun getContactById(id: Int){
         viewModelScope.launch {
@@ -24,9 +26,16 @@ class ContactViewModel @Inject constructor(
         }
     }
 
+    private fun getAllContacts(){
+        viewModelScope.launch {
+            val results = repository.getAllContacts()
+            contacts = results.asLiveData()
+        }
+    }
+
     private suspend fun getOneContact(id: Int){
         val result = repository.getOneContact(id)
-        _contact.value = result
+        _oneContact.value = result
     }
 
     fun addNewContact(contact: Contact) = viewModelScope.launch {
@@ -37,16 +46,8 @@ class ContactViewModel @Inject constructor(
         repository.updateContact(contact)
     }
 
-    fun findContactByName(name: String): Contact? = runBlocking {
-        return@runBlocking repository.findContactByName(name)
-    }
-
     fun deleteContact(contact: Contact) = viewModelScope.launch {
         repository.deleteContact(contact)
     }
 
-    fun isContactExists(name: String): Boolean = runBlocking {
-        val isExists = repository.findContactByName(name)
-        return@runBlocking isExists != null
-    }
 }

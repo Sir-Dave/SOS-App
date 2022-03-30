@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
+import com.sirdave.sosapp.ui.contact.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ContactListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private val viewModel: ContactListViewModel by viewModels()
+    private val viewModel: ContactViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

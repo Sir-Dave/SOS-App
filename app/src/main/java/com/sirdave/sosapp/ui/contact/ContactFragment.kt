@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.sirdave.sosapp.Constants
 import com.sirdave.sosapp.R
@@ -22,7 +22,7 @@ class ContactFragment : Fragment() {
     private lateinit var contactPhone: EditText
     private lateinit var btnSave : Button
     private var existingContact: Contact? =  null
-    private val viewModel: ContactViewModel by viewModels()
+    private val viewModel: ContactViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class ContactFragment : Fragment() {
         contactPhone = view.findViewById(R.id.contactPhone)
         btnSave = view.findViewById(R.id.btnSave)
 
-        viewModel.contact.observe(viewLifecycleOwner, { contact ->
+        viewModel.oneContact.observe(viewLifecycleOwner, { contact ->
             existingContact = contact
             contactName.setText(contact.name)
             contactPhone.setText(contact.phoneNumber)
