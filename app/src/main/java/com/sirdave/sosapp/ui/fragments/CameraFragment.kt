@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.otaliastudios.cameraview.CameraListener
@@ -32,7 +33,7 @@ class CameraFragment : Fragment() {
 
         cameraView = view.findViewById(R.id.cameraView)
         cameraView.setLifecycleOwner(viewLifecycleOwner)
-        val button: ImageButton = view.findViewById(R.id.captureImage)
+        val button: ImageView = view.findViewById(R.id.captureImage)
 
         cameraView.addCameraListener(object : CameraListener(){
             override fun onPictureTaken(result: PictureResult) {
