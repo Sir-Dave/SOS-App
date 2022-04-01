@@ -32,16 +32,29 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
-        setupBottomNav(navController)
+        setupNavigation(navController)
     }
 
-    private fun setupBottomNav(navController: NavController) {
+    private fun setupNavigation(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_home -> showBottomNav()
-                R.id.navigation_camera -> showBottomNav()
-                R.id.navigation_contact_list -> showBottomNav()
-                else -> hideBottomNav()
+                R.id.navigation_home -> {
+                    supportActionBar?.hide()
+                    showBottomNav()
+                }
+                R.id.navigation_camera -> {
+                    supportActionBar?.hide()
+                    showBottomNav()
+                }
+
+                R.id.navigation_contact_list -> {
+                    supportActionBar?.hide()
+                    showBottomNav()
+                }
+                else -> {
+                    supportActionBar?.show()
+                    hideBottomNav()
+                }
             }
         }
     }

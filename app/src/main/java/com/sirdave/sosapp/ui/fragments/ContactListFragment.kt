@@ -31,8 +31,6 @@ class ContactListFragment : Fragment() {
         savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.contact_list_fragment, container, false)
 
-        (requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
-
         addContactIcon = view.findViewById(R.id.addContactIcon)
         recyclerView = view.findViewById(R.id.contact_recycler_view)
 

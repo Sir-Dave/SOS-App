@@ -32,8 +32,6 @@ class CameraFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_camera,
             container, false)
 
-        //(requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
-
         cameraView = view.findViewById(R.id.cameraView)
         cameraView.setLifecycleOwner(viewLifecycleOwner)
         val button: ImageView = view.findViewById(R.id.captureImage)
