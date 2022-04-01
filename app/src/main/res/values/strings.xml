@@ -13,4 +13,5 @@
     <string name="contact">Contact</string>
     <string name="you_have_not_made_any_request">You have not made any request</string>
     <string name="click_the_camera_icon_to_get_started">Click the camera icon to get started</string>
+    <string name="contacts">Contacts</string>
 </resources>

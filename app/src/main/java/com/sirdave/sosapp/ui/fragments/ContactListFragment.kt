@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -12,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
 import com.sirdave.sosapp.db.entity.Contact
-import com.sirdave.sosapp.ui.ContactViewModel
 import com.sirdave.sosapp.ui.ContactRecyclerAdapter
+import com.sirdave.sosapp.ui.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ContactListFragment : Fragment() {
@@ -23,10 +25,14 @@ class ContactListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val viewModel: ContactViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.contact_list_fragment, container, false)
+
+        (requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
+
         addContactIcon = view.findViewById(R.id.addContactIcon)
         recyclerView = view.findViewById(R.id.contact_recycler_view)
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.otaliastudios.cameraview.CameraListener
@@ -31,6 +32,8 @@ class CameraFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_camera,
             container, false)
 
+        //(requireActivity() as AppCompatActivity?)!!.supportActionBar!!.hide()
+
         cameraView = view.findViewById(R.id.cameraView)
         cameraView.setLifecycleOwner(viewLifecycleOwner)
         val button: ImageView = view.findViewById(R.id.captureImage)
@@ -41,7 +44,7 @@ class CameraFragment : Fragment() {
                 encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
                 Log.d("CameraFragment", "encodedImage is $encodedImage")
 
-                sendSOSRequest()
+                //sendSOSRequest()
             }
         })
 

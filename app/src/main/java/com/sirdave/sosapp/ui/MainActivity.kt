@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_camera, R.id.navigation_contact
+                R.id.navigation_home, R.id.navigation_camera, R.id.navigation_contact_list
             )
         )
 
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_home -> showBottomNav()
                 R.id.navigation_camera -> showBottomNav()
-                R.id.navigation_contact -> showBottomNav()
+                R.id.navigation_contact_list -> showBottomNav()
                 else -> hideBottomNav()
             }
         }
