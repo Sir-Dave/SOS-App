@@ -11,18 +11,6 @@
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
-        <action
-            android:id="@+id/openCamera"
-            app:destination="@id/navigation_camera" />
-
-        <action
-            android:id="@+id/newContact"
-            app:destination="@id/navigation_contact" />
-
-        <action
-            android:id="@+id/viewContactList"
-            app:destination="@id/navigation_contact_list" />
-
     </fragment>
 
     <fragment
@@ -30,6 +18,10 @@
         android:name="com.sirdave.sosapp.ui.fragments.ContactListFragment"
         android:label="Contact List"
         tools:layout="@layout/contact_list_fragment">
+
+        <action
+            android:id="@+id/newContact"
+            app:destination="@id/navigation_contact" />
 
         <action
             android:id="@+id/viewContact"
