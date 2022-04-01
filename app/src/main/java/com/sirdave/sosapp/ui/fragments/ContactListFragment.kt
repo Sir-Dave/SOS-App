@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.sosapp.R
@@ -17,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ContactListFragment : Fragment() {
 
+    private lateinit var addContactIcon: ImageView
     private lateinit var recyclerView: RecyclerView
     private val viewModel: ContactViewModel by activityViewModels()
 
@@ -24,7 +27,13 @@ class ContactListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.contact_list_fragment, container, false)
+        addContactIcon = view.findViewById(R.id.addContactIcon)
         recyclerView = view.findViewById(R.id.contact_recycler_view)
+
+        addContactIcon.setOnClickListener {
+            val navController = Navigation.findNavController(it)
+            navController.navigate(R.id.newContact)
+        }
 
         viewModel.contacts.observe(viewLifecycleOwner, { contacts ->
             setUpRecyclerView(contacts)

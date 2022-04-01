@@ -1,10 +1,12 @@
 package com.sirdave.sosapp.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
@@ -27,8 +29,6 @@ class ContactRecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val contact = contactList[position]
         holder.name.text = contact.name
-        holder.phone.text = contact.phoneNumber
-        holder.imageIcon.text = contact.name?.substring(0, 1)
         holder.parent.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt(Constants.CONTACT_ID, contact.id!!)
@@ -37,12 +37,20 @@ class ContactRecyclerAdapter(
         }
     }
 
+    private fun changeBackgroundColour(){
+        val brown = Color.parseColor("#522323")
+        val lemon = Color.parseColor("#7DA53C")
+        val green = Color.parseColor("#358D92")
+        val black = Color.parseColor("#000000")
+        val fuschia = Color.parseColor("#AC278E")
+        val colors: List<Int> = listOf(brown, lemon, green, black, fuschia)
+    }
+
     override fun getItemCount(): Int = contactList.size
 
     inner class RecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var name: TextView = itemView.findViewById(R.id.txt_character_name)
-        var phone: TextView = itemView.findViewById(R.id.txt_character_phone)
-        var imageIcon: TextView = itemView.findViewById(R.id.contactIcon)
+        var imageIcon: ImageView = itemView.findViewById(R.id.contactIcon)
         var parent: CardView = itemView.findViewById(R.id.root_card_view)
     }
 }
